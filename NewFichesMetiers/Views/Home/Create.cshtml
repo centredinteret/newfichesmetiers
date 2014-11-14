@@ -1,0 +1,39 @@
+﻿@model NewFichesMetiers.Models.fiche
+
+@{
+    ViewBag.Title = "Create";
+}
+
+    <script type="text/javascript">
+    </script>
+
+<h2>Créer une nouvelle fiche</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>fiche</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.nom)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.nom)
+            @Html.ValidationMessageFor(model => model.nom)
+        </div>
+
+        <p>
+            <input type="submit" value="Valider le nom de la fiche et poursuivre" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Retour à la liste", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

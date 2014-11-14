@@ -1,0 +1,40 @@
+﻿@model NewFichesMetiers.Models.fiche
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>fiche</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nom)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nom)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.texte)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.texte)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.publier)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.publier)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Retour à la liste", "Index")
+    </p>
+}

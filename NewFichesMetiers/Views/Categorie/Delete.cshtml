@@ -1,0 +1,26 @@
+﻿@model NewFichesMetiers.Models.categorie
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Supprimer une catégorie</h2>
+
+<h3>Etes-vous sûr de vouloir supprimer cette catégorie et en cascade dans les fiches ?</h3>
+<fieldset>
+    <legend>categorie</legend>
+
+    <span class="display-label">
+         @Html.DisplayNameFor(model => model.nom) :&nbsp;&nbsp;
+    </span>
+    <span class="display-field">
+        @Html.DisplayFor(model => model.nom)
+    </span>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Confirmer" /> |
+        @Html.ActionLink("Retour à la liste", "Index")
+    </p>
+}

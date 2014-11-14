@@ -1,0 +1,90 @@
+﻿@model IEnumerable<NewFichesMetiers.Models.ficheView>
+
+@{
+    ViewBag.Title = "Fiches Métiers";
+}
+
+    <h2>@ViewBag.title</h2>
+
+    <p>@Html.ActionLink("Créer une nouvelle fiche", "Create")</p>
+
+    <span id="texteRetour">
+    </span>
+    <table id="TabFichesMetiers" class="display" cellspacing="0">
+        <thead>
+            <tr>
+                <th>
+                    id
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.publier)
+                </th>
+                <th class="dt-head-center">
+                    @Html.DisplayNameFor(model => model.nom)
+                </th>
+                <th class="dt-head-center">
+                    @Html.DisplayNameFor(model => model.texte)
+                </th>
+                <th>
+                </th>
+                <th class="dt-head-center">
+                    @Html.DisplayNameFor(model => model.ecoles)
+                </th>
+                <th class="dt-head-center">
+                    @Html.DisplayNameFor(model => model.categories)
+                </th>
+                <th class="dt-head-center">                    
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style=" vertical-align: top;">
+                        <div class="divId" id="divId-@item.id" contenteditable="false" style="background-color: #FFFFFF; ">@Html.Raw(item.id)</div>
+                    </td>
+                    <td style="vertical-align: top;">
+                        @Html.CheckBox("chk-" + item.id, item.publier, new { @class = "checkbox" })
+                    </td>
+                    <td style=" vertical-align: top;">
+                        <div class="divNom" id="divNom-@item.id" contenteditable="true" style="background-color: #FFFFFF; ">@Html.Raw(item.nom)</div>
+                    </td>
+                    <td id="td-@item.id">
+                        <div class="divText" id="div-@item.id" contenteditable="true" style="display: none; width: 500px; height: 400px; overflow-y: scroll; background-color: #FFFFFF; "><span>@Html.Raw(item.texte)</span></div>
+                        <textarea class="textarea" id="textarea-@item.id" cols="100" rows="15">@Html.Raw(item.texte)</textarea>
+                    </td>
+                    <td style=" vertical-align: top;">
+                        <button class="boutonCode" id="button-@item.id" style="width: 80px;">Code <=> Design</button>
+                        <br /><br />
+                        <button class="boutonSave" id="buttonSave-@item.id" style="display: none; width: 50px;">Save</button>
+                       
+                    </td>
+                    <td style="vertical-align: top;">
+                        <ul>
+                            @foreach (var ecole in item.ecoles)
+                            {
+                                <li>@Html.Raw(ecole.nom)</li>
+                            }
+                        </ul>
+                    </td>
+                    <td style="vertical-align: top;">
+                        <ul>
+                            @foreach (var categorie in item.categories)
+                            {
+                                <li>@Html.Raw(categorie.nom)</li>
+                            }
+                        </ul>
+                    </td>
+                    <td style=" vertical-align: top;">
+                        @Html.ActionLink("Editer la fiche", "Modifier", new { id = item.id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+@section Scripts {
+    @Scripts.Render("~/functionIndex")
+    @Scripts.Render("~/saveJS")
+}

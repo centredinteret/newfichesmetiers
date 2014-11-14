@@ -1,0 +1,44 @@
+﻿@model NewFichesMetiers.Models.fiche_ecole
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>fiche_ecole</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ficheID, "fiche")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ficheID", String.Empty)
+            @Html.ValidationMessageFor(model => model.ficheID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ecoleID, "ecole")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ecoleID", String.Empty)
+            @Html.ValidationMessageFor(model => model.ecoleID)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Retour à la liste", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
